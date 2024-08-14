@@ -51,22 +51,22 @@ fi
 
 
 mkdir -p /app &>>$LOG_FILE
-VALIDATE $? "Installation of mysql server" 
+VALIDATE $? "App folder creation" 
 
-# curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE
-# VALIDATE $? "Installation of mysql server" 
+curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE
+VALIDATE $? "Downloading the code" 
 
-# cd /app &>>$LOG_FILE
-# VALIDATE $? "Installation of mysql server"  
+cd /app &>>$LOG_FILE
+VALIDATE $? "Moved to app directory"  
 
-# unzip /tmp/backend.zip &>>$LOG_FILE
-# VALIDATE $? "Installation of mysql server" 
+unzip /tmp/backend.zip &>>$LOG_FILE
+VALIDATE $? "Unzipping the code" 
 
 
-# cd /app &>>$LOG_FILE
-# VALIDATE $? "Installation of mysql server" 
 
-# npm install &>>$LOG_FILE
-# VALIDATE $? "Installation of mysql server" 
+npm install &>>$LOG_FILE
+VALIDATE $? "Installation of NPM" 
+
+
 
 
