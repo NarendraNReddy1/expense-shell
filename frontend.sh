@@ -54,8 +54,8 @@ VALIDATE $? "Unzipping"
 cp -rf /home/ec2-user/expense-shell/expense.conf /etc/nginx/default.d/expense.conf &>>$LOG_FILE
 VALIDATE $? "Copying"
 
-# systemctl restart nginx &>>$LOG_FILE
-# VALIDATE $? "Nginx restart"
+systemctl restart nginx &>>$LOG_FILE
+VALIDATE $? "Nginx restart"
 
 
 
