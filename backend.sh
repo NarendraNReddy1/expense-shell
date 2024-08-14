@@ -7,7 +7,7 @@ R="\e[31m"
 G="\e[32m"
 N="\e[0m"
 Y="\e[33m"
-echo "Please enter DB password:"
+echo "Please enter DB password: ExpenseApp@1"
 read -s mysql_root_password
 
 
@@ -59,6 +59,7 @@ curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expen
 VALIDATE $? "Downloading the code" 
 
 cd /app &>>$LOG_FILE
+rm -rf /app/*
 VALIDATE $? "Moved to app directory"  
 
 unzip /tmp/backend.zip &>>$LOG_FILE
