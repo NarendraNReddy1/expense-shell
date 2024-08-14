@@ -30,13 +30,8 @@ fi
 
 
 dnf install mysql-server -y &>>$LOG_FILE
+VALIDATE $? "Installation of mysql server"    
 
-if [ $? -eq 0 ]
-then 
-    echo -e "mysql already installed $Y SKIPPING $N"
-else
-    VALIDATE $? "Installation of mysql server"    
-fi
 
 
 
