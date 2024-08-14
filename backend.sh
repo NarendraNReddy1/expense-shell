@@ -50,8 +50,8 @@ fi
 
 
 
-# mkdir /app &>>$LOG_FILE
-# VALIDATE $? "Installation of mysql server" 
+mkdir -p /app &>>$LOG_FILE
+VALIDATE $? "Installation of mysql server" 
 
 # curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE
 # VALIDATE $? "Installation of mysql server" 
