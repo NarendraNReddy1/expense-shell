@@ -38,8 +38,17 @@ VALIDATE $? "Nodejs enable"
 dnf install nodejs -y &>>$LOG_FILE
 VALIDATE $? "Installation of nodejs" 
 
-useradd expense &>>$LOG_FILE
-VALIDATE $? "user add expense" 
+
+id expense &>>$LOG_FILE
+if [ $? -ne 0 ]
+then 
+    echo "user already exists $Y SKIPPING $N"
+else 
+     useradd expense &>>$LOG_FILE
+     VALIDATE $? "user add expense"
+fi       
+
+
 
 # mkdir /app &>>$LOG_FILE
 # VALIDATE $? "Installation of mysql server" 
