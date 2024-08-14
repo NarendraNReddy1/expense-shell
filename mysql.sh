@@ -8,6 +8,8 @@ G="\e[32m"
 N="\e[0m"
 Y="\e[33m"
 
+
+
 VALIDATE(){
     if [ $? -ne 0 ]
     then
@@ -42,5 +44,20 @@ VALIDATE $? "enablment of mysqld"
 systemctl start mysqld &>>$LOG_FILE
 VALIDATE $? "Start of mysqld"
 
-mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOG_FILE
-VALIDATE $? "setting of mysql password"
+
+
+# mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOG_FILE
+# VALIDATE $? "setting of mysql password"
+
+#Idempotency
+
+mysql -h db.narendra.shop -uroot -pExpenseApp@1 -e 'show databases' &>>$LOG_FILE
+if [ $? -ne 0 ]
+then
+    mysql_secure_installation --set-root-pass ExpenseApp@1
+    VALIDATE $? "MySQL root password setup"
+else
+    echo -e "mySQL root password is already setup $Y SKIPPING $$N "
+    
+
+fi        
