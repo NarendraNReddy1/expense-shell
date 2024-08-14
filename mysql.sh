@@ -40,7 +40,7 @@ VALIDATE $? "enablment of mysqld"
 
 
 systemctl start mysqld &>>$LOG_FILE
-VALIDATE ?$ "Start of mysqld"
+VALIDATE $? "Start of mysqld"
 
 mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOG_FILE
-VALIDATE ?$ "setting of mysql password"
+VALIDATE $? "setting of mysql password"
