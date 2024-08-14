@@ -40,7 +40,7 @@ VALIDATE $? "Installation of nodejs"
 
 
 id expense &>>$LOG_FILE
-if [ $? -ne 0 ]
+if [ $? -eq 0 ]
 then 
     echo "user already exists $Y SKIPPING $N"
 else 
