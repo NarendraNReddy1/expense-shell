@@ -48,8 +48,8 @@ VALIDATE $? "Downloading frontend code"
 cd /usr/share/nginx/html &>>$LOG_FILE
 VALIDATE $? "Moving to html directory"
 
-# unzip /tmp/frontend.zip &>>$LOG_FILE
-# VALIDATE $? "Unzipping"
+unzip /tmp/frontend.zip &>>$LOG_FILE
+VALIDATE $? "Unzipping"
 
 # cp -rf /home/ec2-user/expense-shell/expense.conf /etc/nginx/default.d/expense.conf &>>$LOG_FILE
 # VALIDATE $? "Copying"
