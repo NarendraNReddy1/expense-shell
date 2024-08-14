@@ -7,7 +7,8 @@ R="\e[31m"
 G="\e[32m"
 N="\e[0m"
 Y="\e[33m"
-
+echo "Please enter DB password:"
+read -s mysql_root_password
 
 
 VALIDATE(){
@@ -51,10 +52,10 @@ VALIDATE $? "Start of mysqld"
 
 #Idempotency
 
-mysql -h db.narendra.shop -uroot -pExpenseApp@1 -e 'show databases' &>>$LOG_FILE
+mysql -h db.narendra.shop -uroot -p${mysql_root_password} -e 'show databases' &>>$LOG_FILE
 if [ $? -ne 0 ]
 then
-    mysql_secure_installation --set-root-pass ExpenseApp@1
+    mysql_secure_installation --set-root-pass ${mysql_root_password}
     VALIDATE $? "MySQL root password setup"
 else
     echo -e "mySQL root password is already setup $Y SKIPPING $N "
