@@ -7,6 +7,8 @@ R="\e[31m"
 G="\e[32m"
 N="\e[0m"
 Y="\e[33m"
+echo "Please enter DB password:"
+read -s mysql_root_password
 
 
 
@@ -61,11 +63,38 @@ VALIDATE $? "Moved to app directory"
 
 unzip /tmp/backend.zip &>>$LOG_FILE
 VALIDATE $? "Unzipping the code" 
-
+/etc/systemd/system/backend.service
 
 
 npm install &>>$LOG_FILE
 VALIDATE $? "Installation of NPM" 
+
+cp -rf /home/ec2-user/expense-shell/backend.service &>>$LOG_FILE
+VALIDATE $? "Backend service copy" 
+
+
+systemctl daemon-reload &>>$LOG_FILE
+VALIDATE $? "Daemon Reload"
+
+systemctl start backend &>>$LOG_FILE
+VALIDATE $? "Start backend"
+
+systemctl enable backend &>>$LOG_FILE
+VALIDATE $? "Enable backend"
+
+dnf install mysql -y &>>$LOG_FILE
+VALIDATE $? "installation of mysql"
+
+mysql -h db.narendra.shop -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>$LOG_FILE
+VALIDATE $? "Schema Loading"
+
+systemctl restart backend &>>$LOG_FILE
+VALIDATE $? "Restarting backend"
+
+
+
+
+
 
 
 
