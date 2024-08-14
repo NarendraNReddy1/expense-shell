@@ -63,7 +63,7 @@ VALIDATE $? "Moved to app directory"
 
 unzip /tmp/backend.zip &>>$LOG_FILE
 VALIDATE $? "Unzipping the code" 
-/etc/systemd/system/backend.service
+
 
 
 npm install &>>$LOG_FILE
